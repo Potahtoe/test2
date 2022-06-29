@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.js.test2.dao.MainDao">
+<select id="leftList" resultType="com.js.test2.dto.LeftDto">
+	select	*
+	from	a_tbl
+</select>
+
+</mapper>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/setting.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,6 +19,10 @@
 		flex: 1;
 		align-items: center;
 	}
+	#add{
+		display: flex;
+		flex: 0.2;
+	}
 	#right{
 		display: flex;
 		flex: 1;
@@ -29,13 +34,19 @@
 </head>
 <body>
 <div id="main">
-	<div id="left" >
-		<%@include file="left.jsp" %>
+	<div id="left">
+		<jsp:include page="left.jsp" />
+		<span id="list"></span>
+		<script type="text/javascript">
+			$("#list").text(list);
+		</script>
 	</div>
 	<div id="center">
 		<%@include file="center.jsp" %>
 	</div>
-	<input type="button" id="add" value="+" width="10px" height="30px">
+	<div id="add">
+		<input type="button" value="+" width="10px" height="30px">
+	</div>
 	<div id="right">
 		<%@include file="right.jsp" %>
 	</div>

@@ -52,4 +52,10 @@
       <url-pattern>/*</url-pattern>
    </filter-mapping>
    <!-- 한글 안깨지게 처리 종료 -->
+   <context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/spring/root-context.xml
+					classpath:/mybatis-config.xml <!-- 추가해야 작동 -->
+		</param-value>
+	</context-param>
 </web-app>
