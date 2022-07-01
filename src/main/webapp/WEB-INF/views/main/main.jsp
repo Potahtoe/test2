@@ -23,12 +23,26 @@ ul{
 </style>
 <script type="text/javascript">
 	$(function(){
-		$('#title').click(function(){
-			var i =$('#title').val();
-			console.log('i',i);
-			$('#center').html("<ul><li><foreach var='i' items='${i}'><foreach var='j' begin='1' end='4' step='1'>${i}-${j}</foreach></foreach></li></ul>");
+		$('#list').click(function(){
+			$.ajax({
+				url:'${path}/center.do',
+				type:'GET',
+				dataType:'text',
+				success:function(list) {
+					$("#center").html("<ul><li><foreach var='dto' items='${list}'><foreach var='j' begin='1' end='4' step='1'>${dto.list}-${j}</foreach></foreach></li></ul>")
+				}
+			});
 		});
+		
 	});
+/* 	$(function(){
+		$('#list').click(function(){
+			var a =$('#list').val();
+			console.log('a', a);
+			alert(a);
+			$('#center').html("<ul><li><foreach var='a' items='${a}'><foreach var='j' begin='1' end='4' step='1'>${a}-${j}</foreach></foreach></li></ul>");
+		});
+	}); */
 </script>
 <meta charset="UTF-8">
 <title>main</title>
@@ -37,8 +51,8 @@ ul{
 	<div class="main">
 		<div id="left">
 			<ul>
-				<c:forEach var="i" begin="1" end="4" step="1">
-					<li id="title">${i}</li>
+				<c:forEach var="dto" items="${list}">
+					<li id="list">${dto.a_list}</li>
 				</c:forEach>
 			</ul>
 		</div>

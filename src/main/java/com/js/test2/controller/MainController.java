@@ -20,24 +20,32 @@ public class MainController {
 	MainService service;
 	
 	@RequestMapping("main.do")
-	public String main() {
+	public String main(HttpServletRequest req, Model model) {
 		log.info("controller - main.do");
 		
+		service.leftList(req,model);
 		return "main/main";
 	}
-	@RequestMapping("left.do")
-	public String left(HttpServletRequest req, Model model) {
-		log.info("controller - left.do");
-		
-		service.leftList(req, model);
-		return "main/left";
-	}
-	@RequestMapping("center.do")
-	public String center(HttpServletRequest req, Model model) {
-		log.info("controller - center.do");
-		
-		service.leftList(req, model);
-		return "main/center";
-	}
 	
+	  @RequestMapping("left.do") 
+	  public String left(HttpServletRequest req, Model model) { 
+		  log.info("controller - left.do");
+	  
+		  service.leftList(req, model); 
+		  return "main/main"; 
+	  }
+	  
+	  @RequestMapping("center.do") 
+	  public String center(HttpServletRequest req, Model model) { 
+		  log.info("controller - center.do");
+	  
+		  return "main/main"; 
+	  }
+	  
+	  @RequestMapping("right.do") 
+	  public String right(HttpServletRequest req, Model model) { 
+		  log.info("controller - right.do");
+		  
+		  return "main/right"; 
+	  }
 }
