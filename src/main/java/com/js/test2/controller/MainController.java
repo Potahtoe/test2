@@ -32,5 +32,12 @@ public class MainController {
 		service.leftList(req, model);
 		return "main/left";
 	}
+	@RequestMapping("center.do")
+	public String center(HttpServletRequest req, Model model) {
+		log.info("controller - center.do");
+		
+		service.leftList(req, model);
+		return "main/center";
+	}
 	
 }
