@@ -13,11 +13,13 @@ ul{
 <title>Insert title here</title>
 </head>
 <body>
-	<ul>
-		<c:forEach var="i" begin="1" end="4" step="1">
-			<li><a href="center.do?i=${i}">${i}</a></li>
-		</c:forEach>
-	</ul>
-	<input type="hidden" name="i" value="${i}">
+	<div id="left">
+		<ul>
+			<c:forEach var="dto" items="${list}">
+				<li id="list">${dto.a_list}</li>
+			</c:forEach>
+		</ul>
+	</div>
+	<input type="hidden" name="list" value="${list}">
 </body>
 </html>
