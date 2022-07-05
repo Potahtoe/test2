@@ -25,24 +25,22 @@ input{
 }
 </style>
 <script type="text/javascript">
-   function leftTitle(i) {
+
+    function leftTitle(i) {
       $('#center_bottom').empty();
       $('#center_top').html("<input type='checkbox' id='allChk' name='allChk' onclick='allChk()'>전체선택");
       for(j=1; j<=4; j++) {
-         $('#center_bottom').append("<input type='checkbox' name='chk' id='chk'>");
-         $('#center_bottom').append(i,"-",j);
-         $('#center_bottom').append("<br>");
+         $('#center_bottom').append("<input type='checkbox' name='chk' value='" + i + "-" + j + "' id='chk'>",i,"-",j,"<br>");
       }
-   }
-   
-    function allChk() {
-      if($('input[name=allChk]').is(':checked')) {
+   } 
+   function allChk() {
+      if($('input[name=allChk]').prop('checked')) {
          $('input[name=chk]').prop('checked',true);
       }else{
          $('input[name=chk]').prop('checked',false);
       }
-   
-      $('input[name=chk]').click(function(){
+	   
+      $('input[name=chk]').click(function() {
          var totalChk = $('input[name=chk]').length;
          var checked = $('input[name=chk]:checked').length;
          if(totalChk>checked){
@@ -51,6 +49,17 @@ input{
             $('input[name=allChk]').prop('checked',true);
          }
       });
+   }
+   
+      function plus() {
+	   var chkList = [];
+	   $('#center_bottom').each(function(){
+		   list=$('input[name=chk]:checked').val();
+		   chkList.push(list);
+		   console.log(list);
+		   console.log(chkList);
+	   });
+	   $('#right_top').html(chkList);
    }
 </script>
 <meta charset="UTF-8">
@@ -61,7 +70,7 @@ input{
       <div id="left">
          <ul id="left_ul">
             <c:forEach var="i" begin="1" end="4" step="1">
-               <input type="text" value="${i}" onclick="leftTitle(${i});">
+               <li><input type="text" value="${i}" onclick="leftTitle(${i});"></li>
             </c:forEach>
          </ul>
       </div>

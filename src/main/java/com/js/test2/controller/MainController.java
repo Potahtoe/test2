@@ -16,17 +16,18 @@ public class MainController {
 
 	private static final Logger log = LoggerFactory.getLogger(MainController.class);
 	
-	@Autowired
-	MainService service;
+	/*
+	 * @Autowired MainService service;
+	 */
 	
 	@RequestMapping("main.do")
 	public String main(HttpServletRequest req, Model model) {
 		log.info("controller - main.do");
 		
-		service.leftList(req,model);
+		/* service.leftList(req,model); */
 		return "main/main";
 	}
-	
+	/*
 	  @RequestMapping("left.do") 
 	  public String left(HttpServletRequest req, Model model) { 
 		  log.info("controller - left.do");
@@ -48,4 +49,5 @@ public class MainController {
 		  
 		  return "main/right"; 
 	  }
+	  */
 }
