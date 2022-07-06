@@ -18,20 +18,41 @@
 	   align-items: center;
 	}
 	ul{
-	   list-style:none;
+	   list-style: none;
 	}
 	input{
-	   border:none;
+	   border: none;
 	}
 	#alert{
-		position:absolute;
-		width:100%;
-		height:100%;
+		position: absolute;
+		width: 100%;
+		height: 100%;
 		background: rgba(0,0,0,0.8);
-		top:0;
-		left:0;
-		display:none;
+		top: 0;
+		left: 0;
+		display: none;
 	}
+	#alert_content{
+		position: absolute;
+		width: 40%;
+		height: 30%;
+		top: 35%;
+		left: 30%;
+		background: white;
+		align-items: center;
+	}
+	#alert_list{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 20px;
+	}
+	#alert_confirm{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	
 </style>
 <script type="text/javascript">
 	function leftTitle(i) {
@@ -60,22 +81,29 @@
 	}
 	
 	var chkList = [];
+	var finalList = [];
 	function plus() {
 		$('#center_bottom input[name=chk]').each(function(){
 			list=$(this).val();
 			if($(this).is(':checked')){
-				chkList.push(list);
+				chkList.push('<div>' + list + '</div>');
 			}
 		});
 		$('#right_top').html(chkList);
 	}
 	
 	function confirm() {
-		console.log('chkList'+chkList);
-		console.log(chkList.detach());
+		var str = "";
+		for(var i=0; i<$('#right_top').find('div').length; i++) {
+			str += $('#right_top').find('div').eq(i).html() +'<br>';
+		}
+		console.log('str' + str);
 		$('#alert').fadeIn();
-		$(chkList)
-		
+		$('#alert_list').html(str);
+	}
+	
+	function arConfirm() {
+		$('#alert').fadeOut();
 	}
 </script>
 <meta charset="UTF-8">
@@ -103,13 +131,16 @@
          <div id="right_top">
          </div>
          <div id="right_bottom">
-            <input type="button" value="확인" name="cfBtn" onclick="confirm();">
+            <input type="button" value="확인" onclick="confirm();">
          </div>
       </div>
       <div id="alert">
       	<div id="alert_content">
-      	</div>
-      	<div id="alert_confirm">
+      		<div id="alert_list">
+      		</div>
+	      	<div id="alert_confirm">
+	      		<input type="button" value="확인" onclick="arConfirm();">
+	      	</div>
       	</div>
       </div>
    </div>
